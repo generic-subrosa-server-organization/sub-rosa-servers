@@ -177,7 +177,15 @@ async function getMasterServerBuffer(typeByte, client, address, port) {
 	});
 }
 
-async function getServerList() {
+async function getServerList(masterServer) {
+	
+	const masterServers = {
+		"vanilla": '66.226.72.227',
+		"RosaClassic": '123 149.28.60.149'
+	}
+
+	const ip = masterServers[masterServer];
+
 	return new Promise(async (resolve) => {
 		const client = dgram.createSocket('udp4');
 		let allResponded = false;
@@ -190,7 +198,7 @@ async function getServerList() {
 				const buffer = await getMasterServerBuffer(
 					0x4a,
 					client,
-					'66.226.72.227',
+					ip,
 					27592
 				);
 				for (const server of masterServerParsers[2019].parse(buffer).servers) {
@@ -205,7 +213,7 @@ async function getServerList() {
 				const buffer = await getMasterServerBuffer(
 					0x4a,
 					client,
-					'66.226.72.227',
+					ip,
 					27591
 				);
 				for (const server of masterServerParsers[2015].parse(buffer).servers) {
@@ -220,7 +228,7 @@ async function getServerList() {
 				const buffer = await getMasterServerBuffer(
 					0x21,
 					client,
-					'66.226.72.227',
+					ip,
 					27590
 				);
 				for (const server of masterServerParsers[2012].parse(buffer).servers) {
