@@ -181,7 +181,7 @@ async function getServerList(masterServer) {
 	
 	const masterServers = {
 		"vanilla": '66.226.72.227',
-		"RosaClassic": '123 149.28.60.149'
+		"RosaClassic": '149.28.60.149'
 	}
 
 	const ip = masterServers[masterServer];
